@@ -1,0 +1,32 @@
+from pathlib import Path
+import pandas as pd
+import matplotlib.pyplot as plt
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PRED_PATH = PROJECT_ROOT / "data" / "processed" / "spy_predictions_h1_to_h7.csv"
+
+df = pd.read_csv(PRED_PATH)
+df["date"] = pd.to_datetime(df["date"])
+
+# Plot last 250 trading days for horizon 1 (tomorrow)
+plot_df = df.tail(250).copy()
+
+plt.figure()
+plt.plot(plot_df["date"], plot_df["actual_close_h1"], label="Actual (H1)")
+plt.plot(plot_df["date"], plot_df["pred_close_h1"], label="Predicted (H1)")
+plt.title("SPY: 1-day ahead prediction (last ~250 trading days)")
+plt.xlabel("Date")
+plt.ylabel("Close")
+plt.legend()
+plt.tight_layout()
+plt.show()
+
+latest = df.tail(1).iloc[0]
+print("\nLATEST FORECAST (based on most recent date in file):")
+print("Date:", latest["date"])
+print("Close today:", latest["close"])
+
+for h in range(1, 8):
+    pred = latest[f"pred_close_h{h}"]
+    prob = latest[f"prob_up_h{h}"]
+    print(f"H{h} predicted close: {pred:.2f} | P(up vs today): {prob:.2%}")
