@@ -1,0 +1,11 @@
+# Python virtual environment
+.venv/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Raw data (can be very large, you can always re-download)
+data/raw/
+
+# OS files
+.DS_Store
