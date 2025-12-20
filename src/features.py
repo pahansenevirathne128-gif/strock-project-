@@ -11,9 +11,9 @@ def make_features(df: pd.DataFrame) -> pd.DataFrame:
     out = df.copy()
 
     # Returns
-    out["ret_1"] = out["Close"].pct_change(1)
-    out["ret_5"] = out["Close"].pct_change(5)
-    out["ret_10"] = out["Close"].pct_change(10)
+    out["ret_1"] = out["Close"].pct_change(1 , fill_method=None)
+    out["ret_5"] = out["Close"].pct_change(5,fill_method=None)
+    out["ret_10"] = out["Close"].pct_change(10, fill_method=None)
 
     # Moving averages
     out["ma_5"] = out["Close"].rolling(5).mean()
@@ -31,7 +31,7 @@ def make_features(df: pd.DataFrame) -> pd.DataFrame:
     # Volume change (safe against zeros -> prevents inf)
     if "Volume" in out.columns:
         vol_safe = out["Volume"].replace(0, np.nan)
-        out["vol_chg_5"] = vol_safe.pct_change(5)
+        out["vol_chg_5"] = vol_safe.pct_change(5, fill_method = None)
 
     # Calendar features
     out["dow"] = out.index.dayofweek  # 0=Mon..4=Fri

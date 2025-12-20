@@ -1,0 +1,55 @@
+{
+  "trained_at_utc": "2025-12-20T04:28:44.116134+00:00",
+  "ticker": "^GSPC",
+  "start": "2000-01-01",
+  "n_rows": 6480,
+  "holdout_frac": 0.2,
+  "date_start": null,
+  "date_end": null,
+  "feature_cols": [
+    "Adj Close",
+    "Close",
+    "High",
+    "Low",
+    "Open",
+    "Volume",
+    "ret_1",
+    "ret_5",
+    "ret_10",
+    "ma_5",
+    "ma_20",
+    "ma_50",
+    "close_vs_ma20",
+    "close_vs_ma50",
+    "vol_20",
+    "hl_range",
+    "vol_chg_5",
+    "dow",
+    "month"
+  ],
+  "cv_train_only": {
+    "reg_rmse_mean": 19.640242533249157,
+    "reg_mae_mean": 13.421095294851876,
+    "reg_r2_mean": 0.9889778212957229,
+    "clf_acc_mean": 0.49907407407407406,
+    "clf_auc_mean": 0.5192655167359084,
+    "clf_brier_mean": 0.25719101042748355,
+    "clf_prec_mean": 0.5929044366284123,
+    "clf_rec_mean": 0.36006670367236737
+  },
+  "holdout_test": {
+    "reg_rmse": 50.16519729977549,
+    "reg_mae": 36.77298823192589,
+    "reg_r2": 0.9968846543031863,
+    "clf_acc": 0.4660493827160494,
+    "clf_auc": 0.5028299197850075,
+    "clf_brier": 0.2537734220013947,
+    "clf_prec": 0.5287356321839081,
+    "clf_rec": 0.06599713055954089
+  },
+  "models": {
+    "regressor": "Ridge(alpha=1.0) + StandardScaler",
+    "classifier": "RandomForestClassifier(n_estimators=400, max_depth=6)",
+    "random_state": 42
+  }
+}
